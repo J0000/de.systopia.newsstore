@@ -87,7 +87,13 @@
           .then(reloadSources());
       }
     };
-
+    $scope.extendOptions = function(nsSource) {
+        $scope.cmsOptions = false;
+        $scope.rssOptions = false;
+        
+        if ($scope.nsSource['type'] == "Cms") { $scope.cmsOptions = true;}
+        if ($scope.nsSource['type'] == "Rss") { $scope.rssOptions = true;}
+    }
     // Functions for items.
     $scope.updateItemConsumed = function(item, newIsConsumed) {
       return crmApi('NewsStoreConsumed', 'create', { id: item.newsstoreconsumed_id, is_consumed: newIsConsumed })
