@@ -42,12 +42,25 @@
 
     <form crm-ui-id-scope >
       <div crm-ui-field="{name: 'nsSource.name', title: ts('Administrative name')}"> <input crm-ui-id="nsSource.name" name="name" ng-model="nsSource.name" required /> </div>
-      <div crm-ui-field="{name: 'nsSource.uri', title: ts('Source URI')}"> <input crm-ui-id="nsSource.uri" uri="uri" required ng-model="nsSource.uri" /> </div>
       <div crm-ui-field="{name: 'nsSource.type', title: ts('Type')}">
-        <select crm-ui-select="{placeholder:'RSS...', width: '10em', allowClear:false}" ng-model="nsSource.type">
+        <select ng-change="extendOptions()" crm-ui-select="{placeholder:'RSS...', width: '10em', allowClear:false}" ng-model="nsSource.type">
           <option value="Dummy" >Dummy</option>
           <option value="Rss" >RSS</option>
+          <option value="Cms" >CMS Content</option>
         </select>
+      </div>
+      <div ng-show="rssOptions">
+        <div crm-ui-field="{name: 'nsSource.uri', title: ts('Source URI')}"> <input crm-ui-id="nsSource.uri" uri="uri" required ng-model="nsSource.uri" /> </div>      
+      </div>
+      <div ng-show="cmsOptions">
+        <div crm-ui-field="{name: 'nsSource.cmsContentType', title: ts('Content type')}">
+
+            <select  crm-ui-select="{placeholder:'RSS...', width: '10em', allowClear:false}" ng-model="nsSource.drupalContentType">
+                <option value="contentArticle" >Article</option>
+                <option value="contentPage" >Basic Page</option>
+            </select>
+        </div>
+       
       </div>
       <div crm-ui-field="{name: 'nsSource.retention_days', title: ts('Retention days')}">
         <select crm-ui-select="{placeholder:'days...', width: '10em', allowClear:false}" ng-model="nsSource.retention_days">
